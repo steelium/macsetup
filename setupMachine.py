@@ -1,17 +1,13 @@
 import inspect, os
+import shutil
 import urllib
 import subprocess
-
-#TODO
-# get solarized theme from actual github, not mine
 
 
 #Installation settings
 config = {}
 config["macvim"] = True
-config["vimrc"] = True
 config["repo"] = True
-config["bashprofile"] = True
 
 filename = inspect.getfile(inspect.currentframe())
 print "Setting up your new machine. Settings are in this file %s" % (filename)
@@ -88,7 +84,14 @@ def installDotfiles():
   if 'macsetup' not in cwd[len('macsetup') * -1:]:
     print 'Not in the right dir!'
     exit()
-  print 'fail'
+  for (path, dirs, files) in os.walk('dotfiles'):
+    for f in files:
+      if f[0] == '.':
+        toFile = os.path.join(homeDir, f)
+        if not os.path.exists(toFile):
+          shutil.copy(os.path.join('dotfiles', f), toFile)
+    break
+  
 
 #Utilities
 def makedirs(path):
