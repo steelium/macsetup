@@ -105,3 +105,13 @@ if __name__ == "__main__":
   installBrewPackage('macvim')
   installVimFiles()
   installDotfiles()
+  #TODO dock show/hide
+  ##Remove any startup delay from when your mouse enters or leaves the "show" or "hide" regions
+  #defaults write com.apple.Dock autohide-delay -float 0 && killall Dock
+
+  ##Speed up the actual animation double time style (can be set to 0 to just pop)
+  #defaults write com.apple.dock autohide-time-modifier -float 0.5; killall Dock
+
+  ##And to revert either:
+  #defaults delete com.apple.Dock autohide-delay; killall Dock
+  #defaults delete com.apple.Dock autohide-time-modifier; killall Dock
